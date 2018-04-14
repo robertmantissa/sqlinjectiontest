@@ -1,0 +1,4 @@
+node_modules/
+certificate/
+.vscode/
+npm-debug.log
