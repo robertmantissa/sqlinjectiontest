@@ -24,12 +24,15 @@ app.get('/login', function (req, res) {
 
         if (isAuthenticated) {
             res.sendfile('loggedIn.html')
+            console.log('Im in ' + req.connection.remoteAddress );
         }
         else if (query) {
             res.send("ERROR! could not execute sqlite query: " + query)
+              console.log('Error '  + req.connection.remoteAddress );
         }
         else {
             res.redirect('/?WrongPassword=1');
+            console.log('WrongPassword '  + req.connection.remoteAddress );
         }
 
     })
