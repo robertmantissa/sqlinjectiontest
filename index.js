@@ -15,7 +15,7 @@ db.serialize(function () {
 
 
 app.get('/', function (req, res) {
-    res.sendfile('index.html')
+    res.sendfile('index_form.html')
 });
 
 app.get('/login', function (req, res) {
