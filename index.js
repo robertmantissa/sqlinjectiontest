@@ -2,7 +2,7 @@ var sqlite3 = require('sqlite3').verbose();
 var express = require('express');
 var db = new sqlite3.Database(':memory:');
 var url = require('url');
-
+var port = 8080;
 var app = express();
 
 //Fill sqlite with mock data
@@ -38,12 +38,12 @@ app.get('/login', function (req, res) {
     })
 });
 
-app.listen(8080, () => console.log('Example app listening on port 8080!'));
+app.listen(port, () => console.log('Vulnerable app started on port '  + port));
 
 
 function GetAllUsers(username, password, authenticated) {
     var result;
-    var query = "SELECT * FROM User WHERE Username = '" + username + "' AND Password = '" + password + "'";
+    var query = "SELECT * FROM User WHERE Username = '" + username + "' AND Password = '" + password + "'"; //This is where things go bad! _Never ever_ concatenate sql strings!
     console.log(query);
     db.all(query, function (err, row) {
         if (err)
